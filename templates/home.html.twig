@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <main>
+        <h1>Bienvenue sur l'annuaire des anciens élèves du Greta</h1>
+
+        <p id="text1">Faites votre recherche sur l'annuaire de nos anciens élèves<br>et accéder à sa fiche</p>
+
+        <form>
+            <label>
+                <select name="choice">
+                    <option value="first">Développement Web et Web mobile</option>
+                    <option value="second">Designer Web</option>
+                    <option value="third">BTS métiers du numérique</option>
+                </select>
+            </label>
+            <label>
+                <select name="année">
+                    <option value="2019">2019</option>
+                    <option value="2020" >2020</option>
+                    <option value="2021">2021</option>
+                </select>
+
+                <input class="champ" type="submit" value="GO">
+            </label>
+        </form>
+
+        <p id="text2">Vous pouvez effectuez votre recherche par formation et année de formation.</p>
+
+
+
+        <table>
+            <caption>Résultat de la recherche</caption>
+            <tr>
+                <th scope="col" class="col_style_1 ">Nom</th>
+                <th scope="col" class="col_style_1">Prénom</th>
+                <th scope="col" class="col_style_2">Formation suivie</th>
+                <th scope="col" class="col_style_2">Avatar</th>
+            </tr>
+            <tr>
+                <th scope="row" class="col_style_1 lighter">Provost</th>
+                <th scope="row" class="col_style_1 lighter">Daniel</th>
+                <th scope="row" class="col_style_2 lighter">Developpement Web</th>
+                <th scope="row" class="col_style_2 lighter"><img src="images/image1.png" alt="avatar" class="img1"></th>
+            </tr>
+            <tr>
+                <th scope="row" class="col_style_1 lighter">Monsieur</th>
+                <th scope="row" class="col_style_1 lighter">Antoine</th>
+                <th scope="row" class="col_style_2 lighter">Developpement Web</th>
+                <th scope="row" class="col_style_2 lighter">N'a pas d'avatar</th>
+            </tr>
+
+        </table>
+    </main>
+{% endblock %}
