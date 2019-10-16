@@ -9,16 +9,13 @@
         <form>
             <label>
                 <select name="choice">
-                    <option value="first">Développement Web et Web mobile</option>
-                    <option value="second">Designer Web</option>
-                    <option value="third">BTS métiers du numérique</option>
+                    {% for degree in degrees %}<option value="{{ degree.id}}">{{ degree.name}}</option> {% endfor %}
                 </select>
             </label>
             <label>
                 <select name="année">
-                    <option value="2019">2019</option>
-                    <option value="2020" >2020</option>
-                    <option value="2021">2021</option>
+                    {% for session in sessions %}<option value="{{ session.id}}">{{ session.title}}</option> {% endfor %}
+
                 </select>
 
                 <input class="champ" type="submit" value="GO">
@@ -41,7 +38,7 @@
                 <th scope="row" class="col_style_1 lighter">Provost</th>
                 <th scope="row" class="col_style_1 lighter">Daniel</th>
                 <th scope="row" class="col_style_2 lighter">Developpement Web</th>
-                <th scope="row" class="col_style_2 lighter"><img src="images/image1.png" alt="avatar" class="img1"></th>
+                <th scope="row" class="col_style_2 lighter"><img src="{{ asset('images/image1.png') }}" alt="avatar" class="img1"></th>
             </tr>
             <tr>
                 <th scope="row" class="col_style_1 lighter">Monsieur</th>
