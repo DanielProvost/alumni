@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
@@ -11,28 +11,25 @@
     </head>
     <body>
     <header>
-        <div id="header_flex">
-
-            <div>
+        <div class="first">
+            <div class ='avatar'>
                 <p>Bonjour Daniel Provost</p>
-                <img src="{{ asset('images/image1.png') }}" alt="avatar" class="img1">
+                <img src="{{ asset("images/image1.png") }}" alt="avatar" class="img1">
             </div>
-
-            <div>
-                <img src="{{ asset('images/image2.png') }}" alt="logo_greta" id="img2">
-            </div>
-
-            <div>
-                <ul id="menu_flex">
-                    <li><a href="#">Accueil</a></li>
-                    <li><a href="#">Gestion de compte</a></li>
-                    <li><a href ="#">Déconnexion</a></li>
-                    <li><a href={{ path ('avatar.create')}}>Avatar</a> </li>
-                </ul>
-            </div>
-
+        </div>
+        <div class="second">
+            <img src="{{ asset("images/image2.png") }}" alt="logo_greta" id="img2">
+        </div>
+        <div class="third">
+            <ul>
+                <li><a href="#">Accueil</a></li>
+                <li><a href="#"  id="special">Compte</a></li>
+                <li><a href ="#">Déconnexion</a></li>
+{#                <li><a href={{ path ('avatar.create')}}>Avatar</a> </li>#}
+            </ul>
         </div>
     </header>
+
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
     </body>

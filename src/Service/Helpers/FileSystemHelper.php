@@ -15,13 +15,14 @@ class FileSystemHelper{
 
     public function write(string $path,string $content)
     {
-
+        $folders=substr($path,0,strrpos($path,'/'));
+        $this->checkAndCreateFolder($folders);
         $file=fopen($path,'w');
         fwrite($file,$content);
         fclose($file);
 
-        $folders=substr($path,0,strrpos($path,'/'));
-        $this->checkAndCreateFolder($folders);
+
+
 
     }
 
