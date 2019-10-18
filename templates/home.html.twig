@@ -7,17 +7,30 @@
         </div>
 
         <div class="formulaire_recherche">
-            <form>
+            <form action='{{path('home.index')}}' method="post" >
                 <label>
-                    <select name="choice">#}
-                                            {% for degree in degrees %}<option value="{{ degree.id}}">{{ degree.name}}</option> {% endfor %}
-                                        </select>
-                                    </label>
-                                    <label>
-                                        <select name="année">
-                                            {% for session in sessions %}<option value="{{ session.id}}">{{ session.title}}</option> {% endfor %}
-
-                                        </select>
+                <select name="degree">
+                    <option value="">Toutes les formations</option>
+                    {% for degree in degrees %}
+                        {% if(app.request.request.get('degree')==degree.id) %}
+                            <option value="{{ degree.id}}" selected>{{ degree.name}}</option>
+                        {% else  %}
+                            <option value="{{ degree.id}}" >{{ degree.name}}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+                </label>
+                <label>
+                <select name="year">
+                    <option value="">Toutes les années</option>
+                    {% for session in sessions %}
+                        {% if(app.request.request.get('year')==session.id) %}
+                            <option value="{{ session.id}}" selected>{{ session.title}}</option>
+                        {% else  %}
+                            <option value="{{ session.id}}">{{ session.title}}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
 
                     <input class="champ" type="submit" value="GO">
                 </label>
@@ -28,7 +41,7 @@
 
 
         <div class="tableau">
-            <table>
+            <table class= "table-responsive">
                 <caption>Résultat de la recherche</caption>
                 <tr>
                     <th class="color">Nom</th>
@@ -36,19 +49,18 @@
                     <th class="color">Formation suivie</th>
                     <th class="color">Avatar</th>
                 </tr>
-                <tr>
-                    <th>Provost</th>
-                    <th>Daniel</th>
-                    <th>Developpement Web</th>
-                    <th><img src="{{asset("images/image1.png" )  }}" alt="avatar" class="img1"></th>
+                {% for user in users %}
+                    <tr>
+                        <td>{{ user.firstname }}</td>
+                        <td>{{ user.lastname }}</td>
+                        <td><p>---</p>
+                        {% for promo in user.promotions %}
+                            {{promo.degree.name}}<p>---</p>
+                        {% endfor %}
+                        </td>
+                        <td><img src="{{asset("upload/avatar/"~user.avatar)}}" alt="avatar" id="avatarTab"></td>
                 </tr>
-                <tr>
-                    <th>Monsieur</th>
-                    <th>Antoine</th>
-                    <th>Developpement Web</th>
-                    <th>N'a pas d'avatar</th>
-                </tr>
-
+                {% endfor %}
             </table>
         </div>
         <div style="position: relative">
@@ -57,7 +69,6 @@
 
     </section>
     <footer>
-
         <p>Mentions légales - A propos</p>
     </footer>
 
