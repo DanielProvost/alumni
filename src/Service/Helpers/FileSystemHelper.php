@@ -20,15 +20,6 @@ class FileSystemHelper{
         $file=fopen($path,'w');
         fwrite($file,$content);
         fclose($file);
-
-
-
-
     }
-
-
-
-
-
 
 }

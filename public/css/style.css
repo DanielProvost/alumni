@@ -84,8 +84,7 @@ a{
     width: 200px;
     height:auto;
 }
-/*******************************************section********************************************/
-
+/*******************************************section home.html.twig********************************************/
 .photo_accueil{
     grid-column: 2;
     margin-top: 10px;
@@ -177,19 +176,81 @@ caption {
     padding: 2px;
     position: absolute;
     font-weight: bolder;
-    bottom: -50px;
-    left:48%;
+    left:48vw;
+    bottom:14vh;
     text-shadow:0 8px 4px black;
     -webkit-animation:anim 6s;
     animation: anim 6s;
     -webkit-animation-iteration-count:infinite;
+}
+/*******************************************section alumni.html.twig********************************************/
+.image{
+    opacity: 0.2;
+    position: absolute;
+}
+.alumni{
+    position:relative;
+    margin:80px auto;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 500px;
+    border:1px grey solid;
+}
+.alumni-h2{
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+.alumni-nom_prenom{
+    display: flex;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    border: 1px grey solid;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+.alumni-p{
+    width:200px;
+    text-align: center;
+}
+.alumni-coordonnées{
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+.alumni-email{
+    width: 400px;
+    border: 1px grey solid;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    text-align: center;
+}
+.alumni-formation{
+    width: 400px;
+    text-align: center;
+    border:1px grey solid;
+    margin-top:2%;
+    margin-bottom:10%;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    line-height: 20px;
+}
+.alumni-coordonnées p{
+    text-align: center;
+}
+.alumni-img{
+    width:60px;
+    height:auto;
+    margin-bottom: 2%;
+}
+small{
+    color: #2a3fa8;
 }
 /********************************************footer*************************************************************************/
 footer{
     display: grid;
     grid-template-columns: 1fr 1200px 1fr;
     grid-template-rows: 100px;
-    margin-top: 5%;
+    margin-top:10%;
     margin-left:10px;
     margin-right:10px;
     position: relative;

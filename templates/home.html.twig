@@ -48,6 +48,7 @@
                     <th class="color">Prénom</th>
                     <th class="color">Formation suivie</th>
                     <th class="color">Avatar</th>
+                    <th class="color">Plus d'infos</th>
                 </tr>
                 {% for user in users %}
                     <tr>
@@ -59,17 +60,14 @@
                         {% endfor %}
                         </td>
                         <td><img src="{{asset("upload/avatar/"~user.avatar)}}" alt="avatar" id="avatarTab"></td>
+                        <td><a href="{{path('alumni.index',{"id":user.id,"slug":user.slug})  }}">GO</a></td>
                 </tr>
                 {% endfor %}
             </table>
-        </div>
-        <div style="position: relative">
-            <p class="anim">GRETA</p>
+
+
         </div>
 
     </section>
-    <footer>
-        <p>Mentions légales - A propos</p>
-    </footer>
 
 {% endblock %}

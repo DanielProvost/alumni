@@ -22,7 +22,7 @@
         </div>
         <div class="third">
             <ul>
-                <li><a href="#">Accueil</a></li>
+                <li><a href= {{path('home.index')}}>Accueil</a></li>
                 <li><a href="#"  id="special">Compte</a></li>
                 <li><a href ="#">Déconnexion</a></li>
 {#                <li><a href={{ path ('avatar.create')}}>Avatar</a> </li>#}
@@ -42,8 +42,15 @@
                             td.setAttribute('data-label', labels[i % labels.length])
                         })
                     })
-                })</script>
+                })
+            </script>
 
         {% endblock %}
     </body>
+    <footer>
+        <div style="position: relative">
+            <p class="anim">GRETA</p>
+        </div>
+        <p>Mentions légales - A propos</p>
+    </footer>
 </html>

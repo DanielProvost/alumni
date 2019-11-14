@@ -1,0 +1,125 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block body %}
+
+    <section class="container-fluid">
+        <div class="row my-3">
+            <div class="col">
+                <h1 style="margin-bottom: 20px">Administration</h1>
+
+                {% for message in app.flashes('success') %}
+                    <div class="alert alert-success alert-dissmissible fade show" >
+                        {{ message }}
+                     </div>
+                {% endfor %}
+
+
+
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Formations</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Années</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Promotions</a>
+                    </li>
+                </ul>
+
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+
+                        <table class="table">
+                            <a href="{{ path('admin.degree.new') }}" type="button" class="btn btn-primary mb-3 mt-3">
+                                <i class="far fa-plus-square"></i> Nouvelle formation
+                            </a>
+
+                            <thead>
+                                <tr>
+                                    <th scope="col">Nom de la formation</th>
+                                    <th scope="col">Modifier</th>
+                                    <th scope="col">Supprimer</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for degree in degrees %}
+                                    <tr>
+                                        <td>{{ degree.name }}</td>
+                                        <td><a href="{{ path('admin.degree.edit',{'id' : degree.id}) }}">
+                                                <i class="far fa-edit"></i>
+                                            </a></td>
+                                        <td><a href="{{ path('admin.degree.delete',{'id' : degree.id}) }}">
+                                                <i class="far fa-trash-alt"></i>
+                                            </a></td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                        <table class="table">
+                            <a href="{{ path('admin.year.new') }}" type="button" class="btn btn-primary mb-3 mt-3">
+                                <i class="far fa-plus-square"></i> Nouvelle année
+                            </a>
+                            <thead>
+                            <tr>
+                                <th scope="col">Année de la formation</th>
+                                <th scope="col">Modifier</th>
+                                <th scope="col">Supprimer</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for year in years %}
+                                <tr>
+                                    <td>{{ year.title }}</td>
+                                    <td><a href="{{ path('admin.year.edit',{'id' : year.id}) }}">
+                                            <i class="far fa-edit"></i>
+                                        </a></td>
+                                    <td><a href="{{ path('admin.year.delete',{'id' : year.id}) }}">
+                                            <i class="far fa-trash-alt"></i>
+                                        </a></td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+
+                        </table>
+                    </div>
+                    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+
+                        <table class="table">
+                            <a href="{{ path('admin.promotion.new') }}" type="button" class="btn btn-primary mb-3 mt-3">
+                                <i class="far fa-plus-square"></i> Nouvelle promotion
+                            </a>
+                            <thead>
+                            <tr>
+                                <th scope="col">Nom de la formation</th>
+                                <th scope="col">Modifier</th>
+                                <th scope="col">Supprimer</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+{#                            {{ dump(promotions) }}#}
+                            {% for promotion in promotions %}
+                                <tr>
+                                    <td>{{ promotion.degree.name }}{{ promotion.year.title}}</td>
+                                    <td><a href="#"><i class="far fa-edit"></i></a></td>
+                                    <td><a href="#"><i class="far fa-trash-alt"></i></a></td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+
+
+                        </table>
+                    </div>
+            </div>
+        </div>
+
+        </div>
+    </section>
+
+
+{% endblock %}
+
