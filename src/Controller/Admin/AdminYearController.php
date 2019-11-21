@@ -25,7 +25,7 @@ class AdminYearController extends AbstractController{
             $em->persist($degree);
             $em->flush();
             $this->addFlash('success', 'L\'année a été ajoutée!');
-            return $this->redirectToRoute('admin.index');
+            return $this->redirectToRoute('admin.index',['_fragment' => 'annees']);
         }
 
         return $this->render('admin/year/new.html.twig',[
@@ -45,7 +45,7 @@ class AdminYearController extends AbstractController{
             $manager = $this->getDoctrine()->getManager();
             $manager->flush();
             $this->addFlash('sucess','Année mise à jour avec succès');
-            return $this->redirectToRoute('admin.index');
+            return $this->redirectToRoute('admin.index',['_fragment' => 'annees']);
 
         }
         return $this->render('admin/year/edit.html.twig',[
@@ -58,13 +58,12 @@ class AdminYearController extends AbstractController{
      */
     public function delete(Year $year)
     {
+        $id = 'year-'. $year->getId();
         $manager = $this->getDoctrine()->getManager();
         $manager->remove($year);
         $manager->flush();
 
-        $this->addFlash('success','Année supprimée avec succès!');
-
-        return $this->redirectToRoute('admin.index');
+        return $this->json($id);
     }
 
 }

@@ -9,26 +9,27 @@
 
                 {% for message in app.flashes('success') %}
                     <div class="alert alert-success alert-dissmissible fade show" >
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                         {{ message }}
                      </div>
                 {% endfor %}
 
-
-
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Formations</a>
+                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#formations" role="tab" aria-controls="home" aria-selected="true">Formations</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Années</a>
+                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#annees" role="tab" aria-controls="profile" aria-selected="false">Années</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Promotions</a>
+                        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#promotions" role="tab" aria-controls="contact" aria-selected="false">Promotions</a>
                     </li>
                 </ul>
 
                 <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <div class="tab-pane fade show active" id="formations" role="tabpanel" aria-labelledby="home-tab">
 
                         <table class="table">
                             <a href="{{ path('admin.degree.new') }}" type="button" class="btn btn-primary mb-3 mt-3">
@@ -44,12 +45,12 @@
                             </thead>
                             <tbody>
                                 {% for degree in degrees %}
-                                    <tr>
+                                    <tr id="degree-{{ degree.id }}">
                                         <td>{{ degree.name }}</td>
                                         <td><a href="{{ path('admin.degree.edit',{'id' : degree.id}) }}">
                                                 <i class="far fa-edit"></i>
                                             </a></td>
-                                        <td><a href="{{ path('admin.degree.delete',{'id' : degree.id}) }}">
+                                        <td><a class="delete-button" href="{{ path('admin.degree.delete',{'id' : degree.id}) }}">
                                                 <i class="far fa-trash-alt"></i>
                                             </a></td>
                                     </tr>
@@ -59,7 +60,7 @@
 
                     </div>
 
-                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                    <div class="tab-pane fade" id="annees" role="tabpanel" aria-labelledby="profile-tab">
                         <table class="table">
                             <a href="{{ path('admin.year.new') }}" type="button" class="btn btn-primary mb-3 mt-3">
                                 <i class="far fa-plus-square"></i> Nouvelle année
@@ -73,12 +74,12 @@
                             </thead>
                             <tbody>
                             {% for year in years %}
-                                <tr>
+                               <tr id="year-{{ year.id }}">
                                     <td>{{ year.title }}</td>
                                     <td><a href="{{ path('admin.year.edit',{'id' : year.id}) }}">
                                             <i class="far fa-edit"></i>
                                         </a></td>
-                                    <td><a href="{{ path('admin.year.delete',{'id' : year.id}) }}">
+                                    <td><a class="delete-button" href="{{ path('admin.year.delete',{'id' : year.id}) }}">
                                             <i class="far fa-trash-alt"></i>
                                         </a></td>
                                 </tr>
@@ -87,7 +88,7 @@
 
                         </table>
                     </div>
-                    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                    <div class="tab-pane fade" id="promotions" role="tabpanel" aria-labelledby="contact-tab">
 
                         <table class="table">
                             <a href="{{ path('admin.promotion.new') }}" type="button" class="btn btn-primary mb-3 mt-3">
@@ -103,10 +104,14 @@
                             <tbody>
 {#                            {{ dump(promotions) }}#}
                             {% for promotion in promotions %}
-                                <tr>
-                                    <td>{{ promotion.degree.name }}{{ promotion.year.title}}</td>
-                                    <td><a href="#"><i class="far fa-edit"></i></a></td>
-                                    <td><a href="#"><i class="far fa-trash-alt"></i></a></td>
+                                <tr id="promotion-{{ promotion.id }}">
+                                    <td>{{ promotion.degree.name }} {{ promotion.year.title}}</td>
+                                    <td><a href="{{ path('admin.promotion.edit',{'id' : promotion.id}) }}">
+                                            <i class="far fa-edit"></i>
+                                        </a></td>
+                                    <td><a class="delete-button" href="{{ path('admin.promotion.delete',{'id' : promotion.id}) }}" >
+                                            <i class="far fa-trash-alt"></i>
+                                        </a></td>
                                 </tr>
                             {% endfor %}
                             </tbody>
@@ -119,7 +124,40 @@
 
         </div>
     </section>
+  {% block javascripts %}
+      {{ parent() }}
 
+      <script>
+        const path = window.location.hash;
+        if(window.location.hash) {
+            $('#myTab a[href="'+path+'"]').tab('show')
+        }
+
+        const deleteButtons = document.querySelectorAll('.delete-button');
+
+        for(const button of deleteButtons){
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                const reponse = window.confirm('Etes-vous certain de vouloir supprimer cet élément ?');
+                if(reponse){
+                    const url = e.currentTarget.href
+                    $.post(url, (id) => {
+                        const trElement = document.getElementById(id)
+                        trElement.parentNode.removeChild(trElement);
+                        const supp = window.confirm('L\'élément a bien été supprimé');
+                    })
+
+
+
+                }
+
+            });
+        }
+
+
+      </script>
+
+      {% endblock %}
 
 {% endblock %}
 

@@ -24,7 +24,7 @@ class Year
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank(message="Le nom de la formation ne peut pas être vide.")
+     * @Assert\NotBlank(message="L'année de la formation ne peut pas être vide.")
      */
     private $title;
 

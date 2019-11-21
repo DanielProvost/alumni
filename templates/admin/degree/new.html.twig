@@ -6,9 +6,6 @@
     <a href="{{ path('admin.index') }}" type="button" class="btn btn-info" style="float:right;">Retour
     </a>
 
-    {{ form_start(form) }}
-    {{ form_row(form.name) }}
-    <input type="submit" value="Valider">
-    {{ form_end(form) }}
+    {% include 'admin/degree/_form.html.twig' %}
 
 {% endblock %}

@@ -1,7 +1,8 @@
 
 {% block body %}
-{{ form_start(form) }}
-{{ form_row(form.name) }}
-<input type="submit" value="Valider">
-{{ form_end(form) }}
+    {{ form_start(form) }}
+    {{ form_row(form.degree) }}
+    {{ form_row(form.year) }}
+    <input type="submit" value="Valider">
+    {{ form_end(form) }}
 {% endblock %}

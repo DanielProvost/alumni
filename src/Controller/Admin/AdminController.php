@@ -17,10 +17,11 @@ class AdminController extends AbstractController{
     public function index(DegreeRepository $degreeRepository,YearRepository $yearRepository,PromotionRepository $promotionRepository)
     {
         $templateData = [];
-        $templateData['degrees']=$degreeRepository->findAll();
-        $templateData['years']=$yearRepository->findAll();
-        $templateData['promotions']=$promotionRepository->findAll();
+        $templateData['degrees']=$degreeRepository->findBy([],['name' => 'ASC']);
+        $templateData['years']=$yearRepository->findBy([],['title' => 'ASC']);
+        $templateData['promotions']=$promotionRepository->getAllOrderByDegreeAndYear();
 
         return $this->render('admin/index.html.twig',$templateData);
     }
+
 }

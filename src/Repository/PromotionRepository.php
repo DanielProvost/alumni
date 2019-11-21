@@ -19,6 +19,16 @@ class PromotionRepository extends ServiceEntityRepository
         parent::__construct($registry, Promotion::class);
     }
 
+    public function getAllOrderByDegreeAndYear()
+    {
+        $qb = $this->createQueryBuilder('p')
+            ->innerJoin('p.degree', 'd')
+            ->innerJoin('p.year','y')
+            ->addOrderBy('d.name','ASC')
+            ->addOrderBy('y.title','ASC')
+            ;
+        return $qb->getQuery()->getResult();
+    }
     // /**
     //  * @return Promotion[] Returns an array of Promotion objects
     //  */

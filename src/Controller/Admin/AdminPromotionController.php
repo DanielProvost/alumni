@@ -24,7 +24,7 @@ class AdminPromotionController extends AbstractController{
             $em->persist($promotion);
             $em->flush();
             $this->addFlash('success', 'La nouvelle promotion est crée!');
-            return $this->redirectToRoute('admin.index');
+            return $this->redirectToRoute('admin.index',['_fragment' => 'promotions']);
         }
 
         return $this->render('admin/promotion/new.html.twig',[
@@ -45,7 +45,7 @@ class AdminPromotionController extends AbstractController{
             $manager = $this->getDoctrine()->getManager();
             $manager->flush();
             $this->addFlash('sucess','Promotion mise à jour avec succès');
-            return $this->redirectToRoute('admin.index');
+            return $this->redirectToRoute('admin.index',['_fragment' => 'promotions']);
 
         }
         return $this->render('admin/promotion/edit.html.twig',[
@@ -58,12 +58,12 @@ class AdminPromotionController extends AbstractController{
      */
     public function delete(Promotion $promotion)
     {
+        $id = 'promotion-'.$promotion->getId();
+
         $manager = $this->getDoctrine()->getManager();
         $manager->remove($promotion);
         $manager->flush();
 
-        $this->addFlash('success','Promotion supprimée avec succès!');
-
-        return $this->redirectToRoute('admin.index');
+       return $this->json($id);
     }
 }

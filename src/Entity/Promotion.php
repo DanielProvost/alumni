@@ -10,7 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PromotionRepository")
- * @UniqueEntity("name",message="Il éxiste déjà une promotion avec cette intitulé.")
+ * @UniqueEntity(fields={"degree","year"}, message = "Cette formation est djà associé à cette année.")
  */
 class Promotion
 {
@@ -24,7 +24,6 @@ class Promotion
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Degree", inversedBy="promotions")
      * @ORM\JoinColumn(nullable=false)
-     * @Assert\NotBlank(message="Le nom de la promotion ne peut pas être vide.")
      */
     private $degree;
 

@@ -14,7 +14,9 @@ class DegreeFormType extends AbstractType
     {
         $builder
             ->add('name',TextType::class,
-                ['label'=>'Nom de la formation'])
+                ['label'=>'Intitulé de la formation',
+                    'attr' =>['class' => 'name_field'],
+                    'empty_data' => ''])
         ;
     }
 
