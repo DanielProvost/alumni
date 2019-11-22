@@ -6,7 +6,8 @@
         <div class="row my-3">
             <div class="col">
                 <h1 style="margin-bottom: 20px">Administration</h1>
-
+                <a href="{{ path('home.index') }}" type="button" class="btn btn-info" style="float:right;">Accueil
+                </a>
                 {% for message in app.flashes('success') %}
                     <div class="alert alert-success alert-dissmissible fade show" >
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">

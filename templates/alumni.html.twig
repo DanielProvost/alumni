@@ -1,10 +1,14 @@
 {% extends 'base.html.twig' %}
-
+ {% block li %}
+                     <li><a href= {{path('home.index')}}>Accueil</a></li>
+ {% endblock %}
 {% block body %}
 <section class="alumni">
     <h2 class="alumni-h2">Fiche individuelle</h2>
 
-    <img src="{{asset("upload/avatar/"~user.avatar)}}" alt="avatar" class="alumni-img">
+{#    <img src="{{asset("upload/avatar/"~user.avatar)}}" alt="avatar" class="alumni-img">#}
+    <img src="{{asset_avatar(app.user.avatar)}}" alt="avatar" class="alumni-img">
+
 
     <div class="alumni-nom_prenom">
         <p class="alumni-p"><small>Nom : </small>{{ user.lastname }}</p>

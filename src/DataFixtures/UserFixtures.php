@@ -9,22 +9,35 @@ use DateTime;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Faker\Factory;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class UserFixtures extends BaseFixtures implements DependentFixtureInterface
 {
+    /**
+     * @var SvgAvatarFactory
+     * @var UserPasswordEncoderInterface
+     */
+    private $passwordEncoder;
     private $svgAvatarFactory;
     private $fileSystemHelper;
     private $upload_path;
 
+    /**
+     * UserFixtures constructor.
+     * @param SvgAvatarFactory $svgAvatarFactory
+     * @param FileSystemHelper $fileSystemHelper
+     * @param $upload_path
+     */
 
-    public function __construct(SvgAvatarFactory $svgAvatarFactory,FileSystemHelper $fileSystemHelper, $upload_path)
+    public function __construct(SvgAvatarFactory $svgAvatarFactory,FileSystemHelper $fileSystemHelper,UserPasswordEncoderInterface $passwordEncoder, $upload_path)
     {
         parent::__construct();
         $this->svgAvatarFactory=$svgAvatarFactory;
         $this->fileSystemHelper=$fileSystemHelper;
-
         $this->upload_path = $upload_path;
+        $this->passwordEncoder = $passwordEncoder;
     }
+
 
     public function getDependencies()
     {
@@ -42,7 +55,7 @@ class UserFixtures extends BaseFixtures implements DependentFixtureInterface
             $user->setFirstname($faker->firstName);
             $user->setLastname($faker->lastName);
             $user->setEmail($faker->email);
-            $user->setPassword($faker->password);
+            $user->setPassword($this->passwordEncoder->encodePassword($user,'user'));
             $user->setCity($faker->city);
             $user->setBirthdate(new DateTime(rand(1950,2000).'-'.$faker->month.'-'.$faker->dayOfMonth));
             $promotions = $this->getReferences('Promotion');
@@ -54,15 +67,21 @@ class UserFixtures extends BaseFixtures implements DependentFixtureInterface
             $user->setAvatar($filename);
             $manager->persist($user);
         }
-//        $user->setFirstname('Daniel');
-//        $user->setLastname('Provost');
-//        $user->setEmail('dprovost67@gmail.com');
-//        $user->setPassword(password_hash('papa1',PASSWORD_DEFAULT));
-//        $user->setCity('Aix-en-Provence');
-//        $user->setBirthdate(new DateTime('1975-02-14'));
+        $admin = new User();
+        $admin->setFirstname('Daniel');
+        $admin->setLastname('Provost');
+        $admin->setEmail('dprovost67@gmail.com');
+        $passwordHashed = $this->passwordEncoder->encodePassword($admin,'admin');
+        $admin->setPassword($passwordHashed);
+        $admin->setCity('Aix-en-Provence');
 
+        $user->setBirthdate(new DateTime('1975-02-14'));
+        $admin->setAvatar($this->getAvatar());
+        $admin->setRoles(['ROLE_ADMIN']);
+        $manager->persist($admin);
         $manager->flush();
     }
+
     public function getAvatar(){
         $svg=$this->svgAvatarFactory->getAvatar(2,5);
         $filename = sha1(uniqid(rand(),true)).'.svg';

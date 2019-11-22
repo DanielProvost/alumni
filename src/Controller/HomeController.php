@@ -11,9 +11,9 @@ use Symfony\Component\Routing\Annotation\Route;
 class HomeController extends AbstractController{
 
     /**
-
      * @Route("/",name="home.index")
      */
+
     public function index(UserRepository $userRepository, DegreeRepository $degreeRepo, YearRepository $yearRepo,Request $request){
         $users = null;
         if($request->request->count()){
@@ -30,6 +30,7 @@ class HomeController extends AbstractController{
                                             'sessions' =>$years,
                                             'users'=>$users
                                             ]);
+
 
     }
 

@@ -13,23 +13,50 @@
     <header>
         <div class="first">
             <div class ='avatar'>
-                <p>Bonjour Daniel Provost</p>
-                <img src="{{ asset("images/image1.png") }}" alt="avatar" class="img1">
+                {% if app.user is not null  %}
+                <p>Bonjour {{ app.user.firstname }} {{ app.user.lastname }}</p>
+{#                {{ dump(app.user) }}#}
+
+                <img src="{{ asset_avatar(app.user.avatar) }}" alt="avatar" class="img1">
+                    {% else %}
+                        <li><a href ="{{ path('security.login') }}" id="special">Bonjour connectez-vous !</a></li>
+                {% endif %}
+
             </div>
         </div>
         <div class="second">
             <img src="{{ asset("images/image2.png") }}" alt="logo_greta" id="img2">
         </div>
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <div class="third">
+            <ul>
+                {% if is_granted('ROLE_ADMIN') %}
+                <li><a href= "{{ path('admin.index') }}">Administration</a></li>
+                {% endif %}
+                {% block li %}
+{#                <li><a href= {{path('home.index')}}>Accueil</a></li>#}
+                {% endblock %}
+                <li><a href= #>Compte</a></li>
+                <li><a href ="{{ path('security.logout') }}">Déconnexion</a></li>
+
+            </ul>
+        </div>
+        {% else %}
         <div class="third">
             <ul>
                 <li><a href= {{path('home.index')}}>Accueil</a></li>
-                <li><a href="#"  id="special">Compte</a></li>
-                <li><a href ="#">Déconnexion</a></li>
-{#                <li><a href={{ path ('avatar.create')}}>Avatar</a> </li>#}
+                <li><a href ="{{ path('security.login') }}" id="special">Connexion</a></li>
+                <li><a href =#>Compte</a></li>
+
             </ul>
         </div>
-    </header>
+        {% endif %}
 
+
+
+
+
+    </header>
         {% block body %}{% endblock %}
         {% block javascripts %}
             <script>
