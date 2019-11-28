@@ -46,7 +46,7 @@ class PromotionRepository extends ServiceEntityRepository
     }
     */
 
-    /*
+
     public function findOneBySomeField($value): ?Promotion
     {
         return $this->createQueryBuilder('p')
@@ -56,5 +56,5 @@ class PromotionRepository extends ServiceEntityRepository
             ->getOneOrNullResult()
         ;
     }
-    */
+
 }
