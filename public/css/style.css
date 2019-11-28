@@ -63,6 +63,13 @@ header {
     place-items: center;
     margin: 0;
 }
+.burger{
+    width : 20px;
+    height:2px;
+    background-color: black;
+    margin-bottom: 4px;
+    display: none;
+}
 li{
     display: inline-block;
     margin-right: 0.5em;
@@ -343,12 +350,16 @@ footer > p{
     form{
         display: flex;
         flex-direction: column;
+        align-items: center;
     }
     label:nth-child(2){
         margin-top: -12%;
     }
     select{
+        width:250px;
         font-size: 0.9em;
+        margin-top: 10px;
+        margin-bottom: 0;
     }
     small{
         max-width: 250px;
@@ -357,6 +368,8 @@ footer > p{
         font-size: 0.9em;
         padding-top:0;
         padding-bottom: 0;
+        width: 40px;
+        margin-top: 10px;
     }
     .table-responsive table,
     .table-responsive thead,
@@ -450,6 +463,27 @@ footer > p{
     footer{
         font-size: 0.9em;
     }
+    .hide{
+        display: none;
+    }
+    .burger{
+        display: block;
+    }
+    #burger{
+        margin-left : 150px;
+        margin-bottom: 50px;
+        position:fixed;
+    }
+    li{
+        display: block;
+    }
+    ul{
+        margin-top: 20px;
+    }
+    .third{
+        place-items: center;
+    }
+
 
 
 }

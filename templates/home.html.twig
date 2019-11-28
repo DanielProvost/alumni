@@ -8,7 +8,7 @@
 
         <div class="formulaire_recherche">
             <form action='{{path('home.index')}}' method="post" >
-                <label>
+
                 <select name="degree">
                     <option value="">Toutes les formations</option>
                     {% for degree in degrees %}
@@ -19,8 +19,8 @@
                         {% endif %}
                     {% endfor %}
                 </select>
-                </label>
-                <label>
+
+
                 <select name="year">
                     <option value="">Toutes les années</option>
                     {% for session in sessions %}
@@ -33,7 +33,7 @@
                 </select>
 
                     <input class="champ" type="submit" value="GO">
-                </label>
+
             </form>
             <small>Vous pouvez effectuez votre recherche par formation et année de formation.</small>
 

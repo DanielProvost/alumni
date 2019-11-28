@@ -11,6 +11,7 @@
     </head>
     <body>
     <header>
+
         <div class="first">
             <div class ='avatar'>
                 {% if app.user is not null  %}
@@ -28,8 +29,11 @@
             <img src="{{ asset("images/image2.png") }}" alt="logo_greta" id="img2">
         </div>
         {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+
         <div class="third">
+            <nav class ='hide'>
             <ul>
+
                 {% if is_granted('ROLE_ADMIN') %}
                 <li><a href= "{{ path('admin.index') }}">Administration</a></li>
                 {% endif %}
@@ -39,16 +43,28 @@
                 <li><a href= #>Compte</a></li>
                 <li><a href ="{{ path('security.logout') }}">Déconnexion</a></li>
 
-            </ul>
+            </ul></nav>
+            <div id='burger'>
+                <div class='burger'></div>
+                <div class='burger'></div>
+                <div class='burger'></div>
+            </div>
         </div>
         {% else %}
         <div class="third">
+            <nav class ='hide'>
             <ul>
                 <li><a href= {{path('home.index')}}>Accueil</a></li>
                 <li><a href ="{{ path('security.login') }}" id="special">Connexion</a></li>
                 <li><a href =#>Compte</a></li>
 
             </ul>
+            </nav>
+            <div id='burger'>
+                <div class='burger'></div>
+                <div class='burger'></div>
+                <div class='burger'></div>
+            </div>
         </div>
         {% endif %}
 
@@ -69,6 +85,14 @@
                             td.setAttribute('data-label', labels[i % labels.length])
                         })
                     })
+                })
+
+                var bouton = document.getElementById('burger')
+                console.log(bouton)
+                bouton.addEventListener('click',function(){
+                    var menu = document.querySelector('nav')
+                    console.log(menu)
+                    menu.classList.toggle('hide')
                 })
             </script>
 
