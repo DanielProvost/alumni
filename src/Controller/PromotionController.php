@@ -3,10 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Promotion;
-use App\Form\PromotionFormType;
 use App\Repository\PromotionRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 class PromotionController extends AbstractController

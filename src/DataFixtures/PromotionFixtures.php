@@ -37,7 +37,7 @@ class PromotionFixtures extends BaseFixtures implements DependentFixtureInterfac
             $promo->setYear($year);
             $promo->setStartDate(new DateTime(rand(2000,2017).'-'.$faker->month.'-'.$faker->dayOfMonth));
             $promo->setEndDate(new DateTime(rand(2018,2019).'-'.$faker->month.'-'.$faker->dayOfMonth));
-            $promo->setNotes($notes);
+            $promo->setNotes($faker->sentence($nbWords = 6, $variableNbWords = true));
             $manager->persist($promo);
             $this->addReference('Promotion_'.$count,$promo);
             $count++;

@@ -1,0 +1,27 @@
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+{#{{ form_widget(form) }}#}
+
+<section class="user_form">
+    <div>
+        {{ form_start(form) }}
+        <ul>
+            <li class="user_li">{{ form_row(form.firstname) }}</li>
+            <li class="user_li">{{ form_row(form.lastname) }}</li>
+            <li class="user_li">{{ form_row(form.city) }}</li>
+            <li class="user_li">{{ form_row(form.birthdate) }}</li>
+            <li class="user_li">{{ form_row(form.email) }}</li>
+            <li class="user_li">{{ form_row(form.plainPassword) }}</li>
+        </ul>
+
+        <input type="submit" value="Valider">
+        {{ form_end(form) }}
+    </div>
+
+</section>
+
+
+{% endblock %}

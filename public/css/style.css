@@ -127,8 +127,6 @@ select{
     padding: 0.2em;
     /*text-align: center;*/
 }
-
-
 .champ{
     font-size: 1.4rem;
     padding-top: 0.3em;
@@ -191,6 +189,7 @@ caption {
     -webkit-animation-iteration-count:infinite;
 }
 /*******************************************section alumni.html.twig********************************************/
+
 .image{
     opacity: 0.2;
     position: absolute;
@@ -281,6 +280,16 @@ footer > p{
 #form-login>h1{
     margin-bottom: 20px;
 }
+/**********************************************************user-form***************************************************************/
+.user_form {
+    display: grid;
+    grid-template-columns: 1fr 33% 1fr;
+}
+.user_form div{
+     grid-column: 2;
+ }
+
+
 /********************************************header 1200px*****************************************************************/
 @media (max-width: 1200px) {
     header{
@@ -371,20 +380,21 @@ footer > p{
         width: 40px;
         margin-top: 10px;
     }
-    .table-responsive table,
-    .table-responsive thead,
-    .table-responsive tbody,
-    .table-responsive tr,
-    .table-responsive th,
-    .table-responsive td {
+    .tableResponsive table,
+    .tableResponsive thead,
+    .tableResponsive tbody,
+    .tableResponsive tr,
+    .tableResponsive th,
+    .tableResponsive td {
         display: block;
     }
 
-    .table-responsive .color {
+
+    .tableResponsive .color {
         display: none;
     }
 
-    .table-responsive td {
+    .tableResponsive td {
         padding-left: 150px;
         position: relative;
         margin-top: -1px;
@@ -392,11 +402,11 @@ footer > p{
         font-size: 0.9em;
     }
 
-    .table-responsive td:nth-child(odd) {
+    .tableResponsive td:nth-child(odd) {
         background-color: #eee;
     }
 
-    .table-responsive td::before {
+    .tableResponsive td::before {
         padding: 10px;
         content: attr(data-label);
         position: absolute;
@@ -413,15 +423,15 @@ footer > p{
         text-align: left;
     }
 
-    .table-responsive tr {
+    .tableResponsive tr {
         margin-bottom: 1rem;
     }
 
-    .table-responsive th + td {
+    .tableResponsive th + td {
         padding-left: 10px;
     }
 
-    .table-responsive th + td::before {
+    .tableResponsive th + td::before {
         display: none;
     }
 
