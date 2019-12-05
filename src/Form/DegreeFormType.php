@@ -17,6 +17,10 @@ class DegreeFormType extends AbstractType
                 ['label'=>'Intitulé de la formation',
                     'attr' =>['class' => 'name_field'],
                     'empty_data' => ''])
+            ->add('repository',TextType::class,
+                ['label' => 'Lien vers le référentiel',
+                    'attr' => ['class' => 'name_field'],
+                    'required' => false])
         ;
     }
 

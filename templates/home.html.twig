@@ -56,7 +56,7 @@
                         <td>{{ user.lastname }}</td>
                         <td><p>---</p>
                         {% for promo in user.promotions %}
-                            {{promo.degree.name}}<p>---</p>
+                            <a href="{{ path('formation.id',{'id' : promo.degree.id}) }}" style="color: #718C00">{{promo.degree.name}}</a><p>---</p>
                         {% endfor %}
                         </td>
                         <td><img src="{{asset("upload/avatar/"~user.avatar)}}" alt="avatar" id="avatarTab"></td>
