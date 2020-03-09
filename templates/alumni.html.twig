@@ -7,7 +7,7 @@
     <h2 class="alumni-h2">Fiche individuelle</h2>
 
 {#    <img src="{{asset("upload/avatar/"~user.avatar)}}" alt="avatar" class="alumni-img">#}
-    <img src="{{asset_avatar(app.user.avatar)}}" alt="avatar" class="alumni-img">
+    <img src="{{asset_avatar(user.avatar)}}" alt="avatar" class="alumni-img">
 
 
     <div class="alumni-nom_prenom">
@@ -16,7 +16,7 @@
     </div>
 
         <p><small>Coordonnées</small></p>
-{#    {{ dump(user) }}#}
+
     <div class="alumni-coordonnées">
 
 {#        <img src="{{ asset('images/sainte-victoire.jpg') }}" alt="" class="image">#}
@@ -24,7 +24,7 @@
         <p class="alumni-email"><small>Email : </small>{{user.email}}</p>
         <div class="alumni-nom_prenom">
             <p class="alumni-p"><small>Ville : </small>{{user.city}}</p>
-            <p class="alumni-p"><small>Date de naissance : </small>{{ user.birthdate.date |date('d/m/y') }}</p>
+            <p class="alumni-p"><small>Date de naissance : </small>{{ user.birthdate |date('d/m/y') }}</p>
         </div>
     </div>
 

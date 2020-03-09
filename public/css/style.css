@@ -61,6 +61,7 @@ header {
     grid-column: 4;
     display: inline-grid;
     place-items: center;
+    line-height: 100px;
     margin: 0;
 }
 .burger{
@@ -159,14 +160,12 @@ td {
     height:45px;
     width: auto;
 }
-
 caption {
     padding: 10px;
 }
 .color{
     background-color: rgba(77, 176, 239, 0.96);
 }
-
 @-webkit-keyframes anim
 {
     from {transform: rotateY(0);}
@@ -189,7 +188,6 @@ caption {
     -webkit-animation-iteration-count:infinite;
 }
 /*******************************************section alumni.html.twig********************************************/
-
 .image{
     opacity: 0.2;
     position: absolute;
@@ -219,7 +217,7 @@ caption {
     width:200px;
     text-align: center;
 }
-.alumni-coordonnées{
+.alumni-coordonnees{
     margin-top: 2%;
     margin-bottom: 2%;
 }
@@ -240,7 +238,7 @@ caption {
     padding-bottom: 8px;
     line-height: 20px;
 }
-.alumni-coordonnées p{
+.alumni-coordonnees p{
     text-align: center;
 }
 .alumni-img{
@@ -268,7 +266,6 @@ footer > p{
     display: inline-grid;
     place-items: center;
 }
-
 /*************************************************form-login*********************************************************************/
 #form-login{
     background-color: #eaf9f0;
@@ -288,15 +285,11 @@ footer > p{
 .user_form div{
      grid-column: 2;
  }
-
-
 /********************************************header 1200px*****************************************************************/
-@media (max-width: 1200px) {
-    header{
-        grid-template-columns: 1fr 300px 300px 300px 1fr;
-
+@media (max-width:1200px) {
+     header{
+         grid-template-columns: 1fr 300px 300px 300px 1fr;
     }
-
     /***********************************************section 1200px***************************************************************/
     h1{
         font-size:3em;
@@ -314,7 +307,7 @@ footer > p{
     }
 }
 /********************************************header 900px******************************************************************/
-@media (max-width: 900px) {
+@media (max-width:900px) {
     header {
         grid-template-columns: 1fr 48vw 48vw 1fr;
         grid-template-rows: 40px 100px;
@@ -329,7 +322,6 @@ footer > p{
         grid-column: 2;
         grid-row: 2;
         border-left:1px solid rgb(200,200,200);
-
     }
     select{
         font-size: 1.1em;
@@ -355,7 +347,7 @@ footer > p{
         grid-template-rows: 100px;
     }
 }
-@media only screen and (max-width: 700px) {
+@media (max-width:700px) {
     form{
         display: flex;
         flex-direction: column;
@@ -436,10 +428,14 @@ footer > p{
     }
 
 }
-@media(max-width: 450px){
+@media (max-width: 450px){
     /*********************************************header 450px**********************************************************/
+    .alumni{
+        width:100%;
+    }
     .first{
         font-size: 0.9em;
+        line-height:20px;
     }
     .third{
         font-size: 0.9em;
@@ -447,11 +443,14 @@ footer > p{
     .img1{
         width: 25px;
     }
-    td{
-        max-width: 33vw;
-    }
 
     /*********************************************section 450px****************************************************************/
+    .form-control{
+        width: 172px;
+    }
+    td{
+        max-width:100%;
+    }
     select{
         font-size: 0.9em;
     }
@@ -476,11 +475,15 @@ footer > p{
     .hide{
         display: none;
     }
+    .third{
+        line-height: 20px;
+    }
     .burger{
         display: block;
     }
     #burger{
-        margin-left : 150px;
+        margin-top:7px;
+        margin-left : 143px;
         margin-bottom: 50px;
         position:fixed;
     }
@@ -493,7 +496,10 @@ footer > p{
     .third{
         place-items: center;
     }
-
+    #form-login{
+        margin-left:0;
+        margin-right:0;
+    }
 
 
 }

@@ -16,7 +16,7 @@ class AlumniController extends AbstractController{
     public function index(User $user,$slug){
 
 
-//        dd($user,$slug);
+//        dd($user);
 
         return $this->render('alumni.html.twig',['user'=>$user]);
     }

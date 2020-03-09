@@ -116,8 +116,8 @@
                                 <tr id="promotion-{{ promotion.id }}">
                                     <td>{{ promotion.degree.name }} {{ promotion.year.title}}</td>
 {#                                    {{ dump(promotion) }}#}
-                                    <td>{{ promotion.startDate.date |date('d/m/y') }}</td>
-                                    <td>{{ promotion.endDate.date |date('d/m/y') }}</td>
+                                    <td>{{ promotion.startDate |date('d/m/y') }}</td>
+                                    <td>{{ promotion.endDate |date('d/m/y') }}</td>
                                     <td>{{ promotion.notes }}</td>
                                     <td><a href="{{ path('admin.promotion.edit',{'id' : promotion.id}) }}">
                                             <i class="far fa-edit"></i>

@@ -52,15 +52,15 @@
                 </tr>
                 {% for user in users %}
                     <tr>
-                        <td>{{ user.firstname }}</td>
-                        <td>{{ user.lastname }}</td>
-                        <td><p>---</p>
+                        <td data-label="Prénom">{{ user.firstname }}</td>
+                        <td data-label="Nom">{{ user.lastname }}</td>
+                        <td data-label="Promotions"><p>---</p>
                         {% for promo in user.promotions %}
                             <a href="{{ path('formation.id',{'id' : promo.degree.id}) }}" style="color: #718C00">{{promo.degree.name}}</a><p>---</p>
                         {% endfor %}
                         </td>
-                        <td><img src="{{asset("upload/avatar/"~user.avatar)}}" alt="avatar" id="avatarTab"></td>
-                        <td><a href="{{path('alumni.index',{"id":user.id,"slug":user.slug})  }}">GO</a></td>
+                        <td data-label="Avatar"><img src="{{asset("upload/avatar/"~user.avatar)}}" alt="avatar" id="avatarTab"></td>
+                        <td data-label="Plus d'infos"<a href="{{path('alumni.index',{"id":user.id,"slug":user.slug})  }}">GO</a></td>
                 </tr>
                 {% endfor %}
             </table>
